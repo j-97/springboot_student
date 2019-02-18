@@ -12,9 +12,10 @@ pipeline {
             }
         }
 
-        stage('Deploy'){
+        stage('Run'){
             steps{
                 sh 'pwd'
+                sh 'mvn spring-boot:run'
             }
         }
     }
