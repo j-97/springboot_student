@@ -12,10 +12,16 @@ pipeline {
             }
         }
 
-        stage('Run'){
+        stage('Deploy'){
             steps{
                 sh 'pwd'
-                sh 'mvn spring-boot:run'
+                sh '''
+                    docker build -t springboot1 .
+                    docker tag springboot1 jagriti97/springboot1
+                    docker login -u jagriti97 -p Jbnk@1997
+                    docker push jagriti97/springboot1
+                    docker image prune -f
+                '''
             }
         }
     }
